@@ -1,7 +1,207 @@
-.bookingAppointmentPage{
-    *{
+.bookingAppointmentPage {
+    * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+    }
+
+    .headerCalendar {
+        .fc-h-event {
+            display: flex;
+            justify-content: center;
+            border: none;
+            background-color: rgba($color: #000000, $alpha: 0);
+        }
+
+        .fc-theme-standard .fc-scrollgrid,
+        .fc-theme-standard td,
+        .fc-theme-standard th {
+            border: none;
+        }
+
+
+
+
+        .fc-daygrid-day.fc-day-today {
+            background-color: rgba($color: #000000, $alpha: 0);
+        }
+
+        .fc-next-button {
+            background: none;
+        }
+
+        .fc-icon {
+            display: none;
+        }
+
+        .fc-button {
+            position: relative;
+            width: 42px;
+            height: 42px;
+            border-radius: 5px;
+            border: 1px solid #DADADA;
+            background-color: #fff;
+            background-image: url('./assets/images/nextPrevIcon.svg');
+            background-repeat: no-repeat;
+            background-position-y: center;
+            background-position-x: 16px;
+            outline: none;
+
+            &:active {
+                background-color: transparent;
+                box-shadow: none;
+
+            }
+
+            &:focus {
+                // border: transparent;
+                background-color: white;
+            }
+        }
+
+        .fc-prev-button {
+            transform: rotate(180deg);
+        }
+
+        .fc-button-primary,
+        .fc-button {
+            &:focus {
+                box-shadow: none;
+            }
+        }
+
+        .fc-button-primary:not(:disabled):active:focus {
+            box-shadow: none;
+        }
+
+        .fc-button-primary:not(:disabled):active {
+            background-color: white;
+            border: 1px solid #DADADA;
+
+        }
+
+        .fc-button:not(:disabled):focus {
+            border: 1px solid #DADADA;
+        }
+
+        .fc-toolbar-title {
+            font-size: 18px;
+            line-height: 25px;
+            font-family: 'Nunito Sans';
+            color: #8380FF;
+            font-weight: 600;
+            letter-spacing: 0.81px;
+        }
+
+        .fc-button-primary:hover {
+            background-color: white;
+            border: 1px solid #DADADA;
+        }
+
+        .fc-event:focus::after {
+            background: none;
+        }
+
+        .fc-event:focus {
+            box-shadow: none;
+        }
+
+        .fc-button-primary {
+            position: relative;
+            top: 43px;
+            z-index: 1;
+        }
+
+        .fc-scrollgrid-section-body {
+            display: none;
+        }
+
+        .fc {
+            height: 95px;
+        }
+
+        .fc .fc-toolbar.fc-header-toolbar {
+            margin-bottom: 0;
+        }
+
+        .fc-scroller {
+            display: flex;
+            justify-content: center;
+        }
+
+        .fc-col-header {
+            width: 850px !important;
+        }
+
+        .fc-myCustomButtonPrev-button{
+            transform: rotate(180deg);
+        }
+    }
+
+
+
+    .trackY {
+        right: -33px !important;
+        width: 4px !important;
+        background: rgba(217, 216, 255, 0.49) !important;
+        overflow: visible !important;
+    }
+
+    .thumbY {
+        position: absolute !important;
+        width: 10px !important;
+        left: -4px !important;
+        background: #9694F2 !important;
+        box-shadow: 0px 1px 4px 0px rgba(54, 52, 104, 0.26) !important;
+    }
+
+    .trackYVisible {
+        box-shadow: 0px 4px 17px 0px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    .eachDoctorCalendar {
+
+        .fc-theme-standard{
+            
+            td,
+            .fc-scrollgrid{
+                border: none;
+            }
+        }
+
+        .fc-daygrid-day{
+            background-color: transparent;
+
+        }
+
+        .fc-event-main{
+            display: flex;
+            justify-content: center;
+        }
+
+        .fc-h-event{
+            background-color: transparent;
+            border: none;
+        }
+
+        .fc-daygrid-body{
+            padding-top: 15px;
+        }
+
+        .fc-scrollgrid-sync-table{
+            width: 850px !important;
+            margin: 0 auto;
+        }
+
+        
+    }
+
+    .css-b62m3t-container{
+        width: 265px;
+        height: 49px;
+    }
+
+    .css-1u9des2-indicatorSeparator{
+        display: none;
     }
 }

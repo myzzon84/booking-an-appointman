@@ -6,8 +6,8 @@ export default {
   theme: {
     extend: {},
     fontFamily:{
-      openSans: 'Open Sans',
-      nunitoSans: 'Nunito Sans'
+      'openSans': ['"Open Sans"'],
+      'nunitoSans': ['"Nunito Sans"']
     }
   },
   plugins: [],
