@@ -1,6 +1,5 @@
 import useResize from "./pageSize";
 import './BookingAppointment.scss';
-
 import googleMap from './assets/images/googleMap.png';
 import clinicLogo from './assets/images/clinicLogo.png';
 import clockIcon from './assets/images/clock.svg';
@@ -8,26 +7,30 @@ import geoPointIcon from './assets/images/geoPoint.svg';
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from '@fullcalendar/daygrid';
 import calendarIcon from './assets/images/calendarIcon.svg';
-import listArrow from './assets/images/listArrow.svg';
 import avatar from './assets/images/avatar.png';
 import { Scrollbar } from 'react-scrollbars-custom';
-import { createRef, useRef, useState } from "react";
-import Select from "react-select";
+import { Fragment, createRef, useRef, useState } from "react";
+import { Transition, Listbox } from "@headlessui/react";
+import backArrow from './assets/images/backArrow.svg';
+import { useForm } from "react-hook-form";
+
+const appointment = [
+  'Cosmetic Consultation',
+  'Orthodontic Consultation',
+  'Broken Tooth/ Crown/Inlay/ Filling',
+  'Emergency Consultation',
+  'Whitening',
+  'Prosthetics',
+];
 
 const BookingAppointment = () => {
 
-  const options = [
-    {value: 'Cosmetic Consultation', label: 'Cosmetic Consultation'},
-    {value: 'orthodontic consultation', label: 'Orthodontic Consultation'},
-    {value: 'Broken Tooth/ Crown/Inlay/ Filling', label: 'Broken Tooth/ Crown/Inlay/ Filling'},
-    {value: 'Emergency Consultation', label: 'Emergency Consultation'},
-    {value: 'Existing Patient - Exam and Cleaning', label: 'Existing Patient - Exam and Cleaning'},
-    {value: 'New Patient - Exam and Cleaning', label: 'New Patient - Exam and Cleaning'},
-  ]
-
-  const [refs, setRefs] = useState([]);
-
   const pageSize = useResize();
+
+  const [selectedAppointment, setSelectedAppointment] = useState(appointment[0]);
+
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const onSubmit = (data) => console.log(data);
 
   let percent = [16, 33, 50, 67, 84];
 
@@ -38,12 +41,12 @@ const BookingAppointment = () => {
   });
 
   const visitTypeArr = [
-    '',
+    'Cosmetic Consultation',
     'Emergency Consultation',
     'Orthodontic Consultation',
-    'Existing Patient - Exam and Cleaning',
+    'Whitening',
     'Broken Tooth/ Crown/Inlay/ Filling',
-    'New Patient - Exam and Cleaning',
+    'Prosthetics',
 
   ];
 
@@ -81,7 +84,7 @@ const BookingAppointment = () => {
       ]
     },
     {
-      id:2,
+      id: 2,
       avatar: avatar,
       name: 'Audrey Grant',
       speciality: 'dentist',
@@ -102,7 +105,7 @@ const BookingAppointment = () => {
       ]
     },
     {
-      id:3,
+      id: 3,
       avatar: avatar,
       name: 'Charlotte Watson',
       speciality: 'dentist',
@@ -127,7 +130,7 @@ const BookingAppointment = () => {
       ]
     },
     {
-      id:4,
+      id: 4,
       avatar: avatar,
       name: 'Audrey Grant',
       speciality: 'dentist',
@@ -239,16 +242,52 @@ const BookingAppointment = () => {
       <>
         <Header />
         <div className={`pt-[30px] pr-[53px] pl-[46px] pb-[30px] bg-white`}>
-          <div className={`flex`}>
+          <div className={`flex relative`}>
             <div className={`w-[30%] flex flex-col`}>
               <div className={`text-[24px]/[33px] font-nunitoSans font-semibold text-[#7C67FF] tracking-[1.08px] inline-block max-w-max mb-[38px]`}>
                 Select an appointment
               </div>
-              <Select
-                options={options}
-                placeholder={false}
-                
-              />
+
+              <div className={`text-[16px]/[22px] text-[#64697E] font-nunitoSans tracking-[0.72px] max-w-[265px]`}>
+                <Listbox
+                  as={'div'}
+                  value={selectedAppointment}
+                  onChange={setSelectedAppointment}
+                  className={`relative`}
+                >
+                  <Listbox.Button
+                    className={` w-[265px] h-[49px] px-[25px] border-[1px] border-[#E8E8E9] rounded-[10px] text-left relative z-[10] hover:border-[#CACACA] bg-[url("./assets/images/listArrow.svg")] hover:bg-[url("./assets/images/listArrowHover.svg")] bg-no-repeat bg-[90%_20px] bg-white`}
+                  >
+                    {selectedAppointment}
+                  </Listbox.Button>
+                  <Transition
+                    as={'div'}
+                    className={`relative -top-[50px] z-[1] `}
+                    enter="transition duration-500 ease-out"
+                    enterFrom="transform scale-95 opacity-0"
+                    enterTo="transform scale-100 opacity-100"
+                    leave="transition duration-75 ease-out"
+                    leaveFrom="transform scale-100 opacity-100"
+                    leaveTo="transform scale-95 opacity-0"
+                  >
+                    <Listbox.Options className={`absolute top-[39px] left-0 pt-3 z-[1] bg-white rounded-[10px]`}>
+                      {appointment.map((item, i) => {
+                        return (
+                          <Listbox.Option
+                            key={i}
+                            value={item}
+                            className={`h-[49px] px-[25px] flex items-center cursor-pointer hover:bg-[#F3F3FF]`}
+                          >
+                            {item}
+                          </Listbox.Option>
+                        );
+                      })}
+                    </Listbox.Options>
+                  </Transition>
+
+                </Listbox>
+              </div>
+
             </div>
             <div className={`headerCalendar w-[70%]`}>
               <div className={`text-[16px]/[22px] text-[#64697E] font-nunitoSans font-normal flex justify-end`}>
@@ -258,12 +297,12 @@ const BookingAppointment = () => {
                   </span>
                   <img className={`h-5`} src={geoPointIcon} alt="geopoint" />
                 </span>
-                <span className={`pt-[15px] pb-3 px-[25px] rounded-[10px] border-[1px] border-solid border-[#E8E8E9] flex items-center ml-[10px]`}>
+                <div className={`relative pt-[15px] pb-3 px-[25px] rounded-[10px] border-[1px] border-solid border-[#E8E8E9] flex items-center ml-[10px]`}>
                   <span className={`mr-[15px]`}>
                     Select Date
                   </span>
                   <img src={calendarIcon} alt="date picker" />
-                </span>
+                </div>
               </div>
               <FullCalendar
                 ref={calendarRef}
@@ -305,6 +344,7 @@ const BookingAppointment = () => {
                 }
               />
             </div>
+
 
           </div>
           <Scrollbar
@@ -353,6 +393,123 @@ const BookingAppointment = () => {
     );
   };
 
+  const ContinueAsPage = () => {
+
+    const ContinueButton = () => {
+      return (
+        <div className={`w-[193px] h-10 py-[10px] bg-[#8380FF] rounded-[5px] mx-auto text-[15px]/[20px] text-white font-semibold tracking-[0.675px] text-center cursor-pointer`}>
+          {'Continue'}
+        </div>
+      );
+    };
+
+    const ChoseStatus = () => {
+      return (
+        <div className={`w-[780px] mx-auto pt-[50px] font-nunitoSans`}>
+          <h1 className={`text-[32px]/[44px] text-[#E8EAFF] font-semibold text-center mb-[41px] relative`}>
+            Continue as:
+            <img className={`absolute top-[calc(50%-10px)] left-0 cursor-pointer`} src={backArrow} alt="back" />
+          </h1>
+          <div className={`flex justify-between pb-10`}>
+            <div className={`selectGuest w-[360px] pt-[214px] rounded-[10px] px-[25px] pb-8`}>
+              <div className={`text-center text-[24px]/[33px] text-[#E8EAFF] font-bold mb-[15px] tracking-[1.08px]`}>
+                Guest
+              </div>
+              <p className={`text-[15px]/[20px] text-[#E8EAFF] font-normal tracking-[0.675px] text-center mb-[26px]`}>
+                Opting for the 'Guest' login allows you to schedule appointments seamlessly, skipping the registration process.
+              </p>
+              <ContinueButton />
+            </div>
+            <div className={`selectUser w-[360px] pt-[214px] rounded-[10px] px-[25px] pb-8`}>
+              <div className={`text-center text-[24px]/[33px] text-[#E8EAFF] font-bold mb-[15px] tracking-[1.08px]`}>
+                User
+              </div>
+              <p className={`text-[15px]/[20px] text-[#E8EAFF] font-normal tracking-[0.675px] text-center mb-[26px]`}>
+                Sign up and gain access to your medical records. Register with us for your personal health journey.
+              </p>
+              <ContinueButton />
+            </div>
+          </div>
+          <div className={`text-white text-[15px]/[20px] font-normal tracking-[0.675px] text-center`}>
+            Do you have an account? <span className={`text-[#77DEFF] cursor-pointer`}>Sign in</span>
+          </div>
+        </div>
+      );
+    };
+
+    const SignIn = () => {
+      return (
+        <div className={`pt-[110px]`}>
+          <div className={`signInBlock w-[353px] rounded-[10px] py-11 mx-auto`}>
+            <div className={`text-[32px]/[44px] text-[#E8EAFF] font-nunitoSans font-semibold tracking-[1.44px] text-center mb-[25px] cursor-default`}>
+              Sign in
+            </div>
+            <form
+              className={`w-[265px] mx-auto`}
+              onSubmit={handleSubmit(onSubmit)}
+            >
+              <div className={`flex flex-col mb-[15px]`}>
+                <label htmlFor="email" className={`text-[15px]/[18px] text-[#BBAFFF] font-inter font-normal tracking-[0.675px]`}>
+                  Email
+                </label>
+                <input
+                  type="text"
+                  name="email"
+                  id="email"
+                  placeholder="example@gmail.com"
+                  className={`rounded-[5px] bg-[rgba(53,34,140,0.37)] h-9 pl-[15px]`}
+                />
+              </div>
+              <div className={`flex flex-col mb-[15px]`}>
+                <label htmlFor="password" className={`text-[15px]/[18px] text-[#BBAFFF] font-inter font-normal tracking-[0.675px]`}>
+                  Password
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  className={`rounded-[5px] bg-[rgba(53,34,140,0.37)] h-9 pl-[15px]`}
+                />
+              </div>
+              <input
+                value={'Sign in'}
+                type="submit"
+                className={`w-full h-10 rounded-[5px] bg-[#8380FF] text-white text-[15px]/[20px] font-nunitoSans font-semibold tracking-[0.675px] mb-[20px] cursor-pointer`}
+              />
+            </form>
+            <div className={`flex justify-center items-center mb-5`}>
+              <hr className={`w-[70px] border-[2px] border-[#6858CC]`} />
+              <span className={`text-[14px]/[17px] text-[#BBAFFF] font-inter font-medium mx-3 cursor-default`}>
+                Or Continue With
+              </span>
+              <hr className={`w-[70px] border-[2px] border-[#6858CC]`} />
+            </div>
+            <div className={`flex justify-center`}>
+              <div className={`googleLogin w-[83px] h-[41px] rounded-lg bg-[rgba(53,34,140,0.37)] mx-[10px] cursor-pointer`}>
+
+              </div>
+              <div className={`appleLogin w-[83px] h-[41px] rounded-lg bg-[rgba(53,34,140,0.37)] mx-[10px] cursor-pointer`}>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      );
+    };
+
+    return (
+      <div className={`continueAsWrapper`}>
+        <Header />
+        <div className={`mainBlock max-w-[1420px] h-[656px]`}>
+          <ChoseStatus />
+          {/* <SignIn /> */}
+        </div>
+        <Footer />
+      </div>
+    );
+  };
+
   const TimeAppointment = (eventInfo) => {
     return (
       <div className={`bg-white text-[14px]/[19px] text-[#6674F3] font-openSans tracking-[0.63px] w-24 h-[35px] flex justify-center items-center border-[1px] border-solid border-[#E8E8E9] rounded-[5px] hover:bg-[#F2F3FF] cursor-pointer mb-[10px]`}>
@@ -381,7 +538,8 @@ const BookingAppointment = () => {
       <span className=" fixed top-0 right-[50px] text-[30px]/[32px]">{`${pageSize[0]} X ${pageSize[1]}`}</span>
       <div className='bookingAppointmentWrapper max-w-[1420px] mx-auto'>
         {/* <VisiteTypePage /> */}
-        <SchedulerPage />
+        {/* <SchedulerPage /> */}
+        <ContinueAsPage />
       </div>
     </div>
   );

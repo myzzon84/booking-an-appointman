@@ -133,7 +133,7 @@
             width: 850px !important;
         }
 
-        .fc-myCustomButtonPrev-button{
+        .fc-myCustomButtonPrev-button {
             transform: rotate(180deg);
         }
     }
@@ -161,47 +161,147 @@
 
     .eachDoctorCalendar {
 
-        .fc-theme-standard{
-            
+        .fc-theme-standard {
+
             td,
-            .fc-scrollgrid{
+            .fc-scrollgrid {
                 border: none;
             }
         }
 
-        .fc-daygrid-day{
+        .fc-daygrid-day {
             background-color: transparent;
 
         }
 
-        .fc-event-main{
+        .fc-event-main {
             display: flex;
             justify-content: center;
         }
 
-        .fc-h-event{
+        .fc-h-event {
             background-color: transparent;
             border: none;
         }
 
-        .fc-daygrid-body{
+        .fc-daygrid-body {
             padding-top: 15px;
         }
 
-        .fc-scrollgrid-sync-table{
+        .fc-scrollgrid-sync-table {
             width: 850px !important;
             margin: 0 auto;
         }
 
-        
+
     }
 
-    .css-b62m3t-container{
+    .css-b62m3t-container {
         width: 265px;
-        height: 49px;
+        position: relative;
     }
 
-    .css-1u9des2-indicatorSeparator{
+    .css-1u9des2-indicatorSeparator {
         display: none;
+    }
+
+    .css-13cymwt-control,
+    .css-t3ipsp-control {
+        height: 49px;
+        border-radius: 10px;
+        border: 1px solid #E8E8E9;
+        background: #FEFEFE;
+        color: #64697E;
+        font-family: Nunito Sans;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0.72px;
+    }
+
+    .css-t3ipsp-control {
+        outline: none;
+
+        &:active {
+            border: 1px solid #E8E8E9;
+        }
+
+        &:focus {
+            border: 1px solid #E8E8E9;
+        }
+
+        &:hover {
+            border: 1px solid #E8E8E9;
+        }
+    }
+
+    .appointmentsList {
+        position: absolute;
+        // opacity: 0;
+        width: 265px;
+        height: 100px;
+        top: 49px;
+        left: 0;
+        background-color: blue;
+        z-index: 1;
+        border-radius: 10px;
+    }
+
+    .continueAsWrapper{
+        .mainBlock{
+            background-image: url('./assets/images/continueAsBG.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        .selectGuest,
+        .selectUser{
+            background-color: rgba(53, 34, 140, 0.37);
+            box-shadow: 0px 4px 15px 0px rgba(74, 73, 92, 0.10), 0px 4px 29px 0px rgba(63, 52, 131, 0.21) inset;
+        }
+
+        .selectGuest{
+            background-image: url('./assets/images/guest.png');
+            background-repeat: no-repeat;
+            background-position-x: center;
+        }
+
+        .selectUser{
+            background-image: url('./assets/images/user.png');
+            background-repeat: no-repeat;
+            background-position-x: center;
+            background-position-y: 35px;
+        }
+
+        .signInBlock{
+            background: rgba(53, 34, 140, 0.37);
+            box-shadow: 0px 4px 15px 0px rgba(74, 73, 92, 0.10), 0px 4px 29px 0px rgba(63, 52, 131, 0.21) inset;
+            input{
+
+                &::placeholder{
+                    color: #6858CC;
+                    font-family: 'Inter';
+                    font-size: 16px;
+                    line-height: 19px;
+                    font-weight: 400;
+                    letter-spacing: 0.72px;
+                }
+            }
+        }
+
+        .googleLogin,
+        .appleLogin{
+            box-shadow: 0px 4px 15px 0px rgba(74, 73, 92, 0.10), 0px 4px 29px 0px rgba(63, 52, 131, 0.21) inset;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        .googleLogin{
+            background-image: url('./assets/images/google.png');
+        }
+        .appleLogin{
+            background-image: url('./assets/images/apple.png');
+        }
     }
 }

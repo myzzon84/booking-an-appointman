@@ -7,7 +7,8 @@ export default {
     extend: {},
     fontFamily:{
       'openSans': ['"Open Sans"'],
-      'nunitoSans': ['"Nunito Sans"']
+      'nunitoSans': ['"Nunito Sans"'],
+      'inter': ['Inter']
     }
   },
   plugins: [],
