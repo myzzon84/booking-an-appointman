@@ -248,38 +248,39 @@
         border-radius: 10px;
     }
 
-    .continueAsWrapper{
-        .mainBlock{
+    .continueAsWrapper {
+        .mainBlock {
             background-image: url('./assets/images/continueAsBG.png');
             background-repeat: no-repeat;
             background-size: contain;
         }
 
         .selectGuest,
-        .selectUser{
+        .selectUser {
             background-color: rgba(53, 34, 140, 0.37);
             box-shadow: 0px 4px 15px 0px rgba(74, 73, 92, 0.10), 0px 4px 29px 0px rgba(63, 52, 131, 0.21) inset;
         }
 
-        .selectGuest{
+        .selectGuest {
             background-image: url('./assets/images/guest.png');
             background-repeat: no-repeat;
             background-position-x: center;
         }
 
-        .selectUser{
+        .selectUser {
             background-image: url('./assets/images/user.png');
             background-repeat: no-repeat;
             background-position-x: center;
             background-position-y: 35px;
         }
 
-        .signInBlock{
+        .signInBlock {
             background: rgba(53, 34, 140, 0.37);
             box-shadow: 0px 4px 15px 0px rgba(74, 73, 92, 0.10), 0px 4px 29px 0px rgba(63, 52, 131, 0.21) inset;
-            input{
 
-                &::placeholder{
+            input {
+
+                &::placeholder {
                     color: #6858CC;
                     font-family: 'Inter';
                     font-size: 16px;
@@ -291,17 +292,38 @@
         }
 
         .googleLogin,
-        .appleLogin{
+        .appleLogin {
             box-shadow: 0px 4px 15px 0px rgba(74, 73, 92, 0.10), 0px 4px 29px 0px rgba(63, 52, 131, 0.21) inset;
             background-repeat: no-repeat;
             background-position: center center;
         }
 
-        .googleLogin{
+        .googleLogin {
             background-image: url('./assets/images/google.png');
         }
-        .appleLogin{
+
+        .appleLogin {
             background-image: url('./assets/images/apple.png');
+        }
+    }
+
+    .forWhoPage {
+        .mainBlock {
+            background-image: url('./assets/images/continueAsBG.png');
+        }
+    }
+
+    .forUserPageWrapper {
+        .inputBlock {
+            &::placeholder {
+                color: #C5C5C5;
+                font-family: Inter;
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 18px;
+                letter-spacing: 0.675px;
+            }
         }
     }
 }

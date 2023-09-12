@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import BookingAppointment from './BookingAppointment'
+import MainLayout from './pages/MainLayout';
 import './index.css';
 import './style.scss';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <BookingAppointment />,
+    <MainLayout />,
 )

@@ -4,12 +4,13 @@ export default {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
-    fontFamily:{
+    extend: {
+    },
+    fontFamily: {
       'openSans': ['"Open Sans"'],
       'nunitoSans': ['"Nunito Sans"'],
       'inter': ['Inter']
-    }
+    },
   },
   plugins: [],
 }
